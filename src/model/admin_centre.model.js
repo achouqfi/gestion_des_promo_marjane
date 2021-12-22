@@ -27,15 +27,14 @@ exports.GetAdminCentreById = (id, result)=>{
 }
 
 //add new admin centre
-exports.AddNewAdminCentre = (id,nom,prenom,email,pays,ville)=>{
-    console.log(id,nom,prenom,email,pays,ville);
-    dbConn.query( `INSERT INTO admin_centre (id,nom,prenom,email,pays,ville) VALUES (${id},"${nom}","${prenom}","${email}","${pays}","${ville}")`, (err, res)=>{
+exports.AddNewAdminCentre = (id,nom,prenom,email,pays,ville,password)=>{
+    dbConn.query( `INSERT INTO admin_centre (id,nom,prenom,email,pays,ville,password) VALUES (${id},"${nom}","${prenom}","${email}","${pays}","${ville}",${password})`, (err, res)=>{
         if(err){
             console.log(err);
-            result(err);
+            // result(err);
         }else{
             console.log('admin centre insered successfully');
-            return res;
+            // return res;
         }
     })
 }
@@ -52,13 +51,24 @@ exports.DeleteAdminCentre = (id)=>{
     })
 }
 
-exports.updateAdminCentre =(id,nom,prenom,email,pays,ville)=>{
+exports.updateAdminCentre =(id,nom,prenom,email,pays,ville,password)=>{
     // console.log(id,nom,prenom,email,pays,ville);
-    dbConn.query(`UPDATE admin_centre SET id=${id}, nom="${nom}",prenom="${prenom}",email="${email}",pays="${pays}",ville="${ville}" WHERE id = ${id}`, (err, res)=>{
+    dbConn.query(`UPDATE admin_centre SET id=${id}, nom="${nom}",prenom="${prenom}",email="${email}",pays="${pays}",ville="${ville}",password="${password}" WHERE id = ${id}`, (err, res)=>{
         if(err){
             console.log(err);
         }else{
             console.log('admin centre updated successfully');
+        }
+    })
+}
+
+exports.UpdatePassword =(id, password)=>{
+    // console.log(id, password);
+    dbConn.query(`UPDATE admin_centre SET password="${password}" WHERE id = ${id}`, (err, res)=>{
+        if(err){
+            console.log(err);
+        }else{
+            console.log('admin password updated successfully');
         }
     })
 }

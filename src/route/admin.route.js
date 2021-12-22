@@ -10,5 +10,4 @@ router.get('/',GetAdmin);
 //sign in
 router.post('/login',login)
 
-
 module.exports = router;

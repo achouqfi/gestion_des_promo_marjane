@@ -9,10 +9,12 @@ exports.GetAdmin = () =>{
     })
 };
 
-// function findReservation() {
-//     return new Promise((resolve, reject) => {
-//         connection.query("select nom,email,Npassport,assurance,repas,telephone,Nperson,datenaissance,vols.pointdepart,vols.pointarrive,vols.horaire,vols.datedepart,vols.datedarrive,vols.prix,vols.escale from vols,reservation where vols.volID = reservation.volID and reservation.reservationID=(SELECT  MAX(reservationID) FROM reservation)", function(err, res){
-//             resolve(res)
-//         })
-//     })
-// }
+exports.updateAdmin =(id,token)=>{
+    dbConn.query(`UPDATE admin SET token="${token}" WHERE id=${id}`, (err, res)=>{
+        if(err){
+            console.log(err);
+        }else{
+            console.log('token updated successfully');
+        }
+    })
+};
