@@ -10,15 +10,11 @@ exports.GetChefRayon = () => {
 };
 
 //get admin centre by id
-exports.GetChefRayonById = (id, result) => {
-  dbConn.query("SELECT * FROM chef_rayon WHERE id=?", id, (err, res) => {
-    if (err) {
-      console.log("Error while fetching utisateur by id", err);
-      result(err);
-    } else {
-      console.log("chef rayon fetched successfully");
-      result(res);
-    }
+exports.GetChefRayonById = (id) => {
+    return new Promise((resolve, reject) => {
+    dbConn.query( `SELECT * FROM chef_rayon WHERE id=${id}`, (err, res) => {
+      resolve(res);
+    });
   });
 };
 
