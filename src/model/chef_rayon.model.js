@@ -1,17 +1,25 @@
 const dbConn  = require('../../db/connDb');
 
-exports.GetChefRayon = (result) =>{
-    dbConn.query('SELECT * FROM chef_rayon', (err, res)=>{
-        if(err){
-            console.log('Error while fetching users', err);
-            result(err);
-        }else{
-            console.log('chef rayon fetched successfully');
-            result(res);
-        }
-    })
-}
+// exports.GetChefRayon = (result) =>{
+//     dbConn.query('SELECT * FROM chef_rayon', (err, res)=>{
+//         if(err){
+//             console.log('Error while fetching users', err);
+//             result(err);
+//         }else{
+//             console.log('chef rayon fetched successfully');
+//             result(res);
+//         }
+//     })
+// }
 
+exports.GetChefRayon = () =>{
+    return new Promise((resolve, reject) =>{
+        dbConn.query('SELECT * FROM chef_rayon', (err, res)=>{
+            resolve(res)
+            // console.log(res);
+        })
+    })
+};
 
 //get admin centre by id
 exports.GetChefRayonById = (id, result)=>{
@@ -57,6 +65,18 @@ exports.updateChefRayon =(id,nom,prenom,email,pays,ville,id_admin_centre,rayon)=
             console.log(err);
         }else{
             console.log('chef rayon updated successfully');
+        }
+    })
+}
+
+
+exports.UpdatePassword =(id, password)=>{
+    // console.log(id, password);
+    dbConn.query(`UPDATE chef_rayon SET password="${password}" WHERE id = ${id}`, (err, res)=>{
+        if(err){
+            console.log(err);
+        }else{
+            console.log('admin password updated successfully');
         }
     })
 }

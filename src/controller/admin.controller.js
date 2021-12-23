@@ -1,13 +1,14 @@
 const { GetAdmin,updateAdmin } = require('../model/admin.model');
 const jwt = require('jsonwebtoken');
+const date = require('dates-generator');
 
 exports.GetAdmin = (req, res)=> {
     GetAdmin((err, users) =>{
-        // console.log('We are here');
-        if(err) res.send(err);
-        res.send(users)
+        console.log('We are here');
+        // if(err) res.send(err);
+        // res.send(users)
     })
-};
+}
 
 exports.login = async(req, res)=> {
       const Admins = await GetAdmin();
@@ -27,9 +28,9 @@ exports.login = async(req, res)=> {
         );
         res.json(token);
         updateAdmin( CAdmin.id,token);
+      }else{
+        res.status(400).send("information incorrect");
       }
-      res.status(400).send("information incorrect");
-
 
 };
 
