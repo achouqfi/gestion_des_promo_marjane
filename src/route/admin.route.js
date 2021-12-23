@@ -1,13 +1,13 @@
-const express = require('express');
+const express = require("express");
 const router = express.Router();
-const dbConn  = require('../../db/connDb');
+const dbConn = require("../../db/connDb");
 
-const { GetAdmin, login } = require('../controller/admin.controller');
+const { GetAdmin, login } = require("../controller/admin.controller");
 
 // get all admin
-router.get('/',GetAdmin);
+router.get("/", GetAdmin);
 
 //sign in
-router.post('/login',login)
+router.post("/login", login);
 
 module.exports = router;
