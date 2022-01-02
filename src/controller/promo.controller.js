@@ -4,6 +4,8 @@ const {
   DeletePromo,
   updatePromo,
   UpdateStatus,
+  GetProduitById,
+  GetRayonById
 } = require("../model/promo.model");
 const { GetChefRayonById} = require('../model/chef_rayon.model');
 
@@ -16,7 +18,7 @@ exports.GetPromo = (req, res) => {
 
 exports.CreatePromo = async(req, res) => {
   const Nom_de_rayon =await GetChefRayonById(req.body.id_chef_rayon);
-
+  
   // promo ne doit pas dépasser 50% du prix du produit 
   // Chaque 5% de réduction vaut 50dhs de points de fidélité gagnés
   // La promotion des produits multimédia ne doit pas dépasser 20%
@@ -36,7 +38,7 @@ exports.CreatePromo = async(req, res) => {
           }
         );
       }else {
-        console.log('les informations incorrectes');
+        console.log('le purcentage de promo est élevé');
       }
   });
 

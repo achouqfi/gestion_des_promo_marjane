@@ -59,7 +59,7 @@ exports.updatePromo = (
   fidelite,) => {
   // console.log(id,nom,prenom,email,pays,ville);
   dbConn.query(
-    `UPDATE promo SET id=${id}, nom="${nom}",prenom="${prenom}",email="${email}",pays="${pays}",ville="${ville}",password="${password}" WHERE id = ${id}`,
+    `UPDATE promo SET id=${id}, centre="${centre}",pourcentage="${pourcentage}",id_produit="${id_produit}",id_chef_rayon="${id_chef_rayon}",fidelite="${fidelite}", WHERE id = ${id}`,
     (err, res) => {
       if (err) {
         console.log(err);
@@ -86,30 +86,18 @@ exports.UpdateStatus = (id, status) => {
   );
 };
 
-// exports.GetProduitById = (id, result) => {
-//   dbConn.query("SELECT * FROM admin_centre WHERE id=id", id, (err, res) => {
-//     if (err) {
-//       console.log("Error while fetching utisateur by id", err);
-//       result(err);
-//     } else {
-//       console.log("admin centre fetched successfully");
-//       result(res);
-//     }
+// exports.GetProduitById = (id) => {
+//   return new Promise((resolve, reject) => {
+//     dbConn.query( `SELECT * FROM produit WHERE id=${id}` , (err, res) => {
+//       resolve(res);
+//     });
 //   });
 // };
 
-exports.GetProduitById = (id) => {
-  return new Promise((resolve, reject) => {
-    dbConn.query( `SELECT * FROM produit WHERE id=${id}` , (err, res) => {
-      resolve(res);
-    });
-  });
-};
-
-exports.GetRayonById = (id) => {
-  return new Promise((resolve, reject) => {
-    dbConn.query( `SELECT * FROM rayon WHERE id=${id}` , (err, res) => {
-      resolve(res);
-    });
-  });
-};
+// exports.GetRayonById = (id) => {
+//   return new Promise((resolve, reject) => {
+//     dbConn.query( `SELECT * FROM rayon WHERE id=${id}` , (err, res) => {
+//       resolve(res);
+//     });
+//   });
+// };
